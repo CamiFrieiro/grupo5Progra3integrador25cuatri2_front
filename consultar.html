@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tp Integrador Front</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css'>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <a href="index.html">
+                    <li>Ver</li>
+                </a>
+                <a href="consultar.html">
+                    <li>Consultar id</li>
+                </a>
+                <a href="crear.html">
+                    <li>Crear</li>
+                </a>
+                <a href="modificar.html">
+                    <li>Modificar</li>
+                </a>
+                <a href="eliminar.html">
+                    <li>Eliminar</li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Consultar producto por id</h1>
+
+        <form id="getProduct-form">
+            <label for="idProd">Id del producto</label>
+            <input type="number" name="idProd" id="idProd" required>
+
+            <input type="submit" value="Consultar producto">
+        </form>
+
+        <hr>
+        <section id="contenedor-productos">
+            <ul id="lista-productos"></ul>
+        </section>
+    </main>
+
+    <script>
+        let listaProductos = document.getElementById("lista-productos");
+        let getProductForm = document.getElementById("getProduct-form");
+        let url = "http://localhost:3000";
+
+
+        getProductForm.addEventListener("submit", async (event) => {
+            event.preventDefault(); 
+            let formData = new FormData(event.target);
+            console.log(formData); 
+
+            let data = Object.fromEntries(formData.entries());
+            console.log(data); 
+
+            let idProd = data.idProd; 
+            console.log(idProd);
+            console.log(`Realizando una peticion GET a la url ${url}/api/products${idProd}`);
+            
+            let response = await fetch(`${url}/api/products${idProd}`);
+
+            let datos = await response.json();
+
+            if(response.ok){
+                let producto = datos.payload[0];
+                console.log(producto);
+
+                let htmlProducto = `
+                    <li class="li-producto">
+                            <img class="producto-img" src="${producto.image}" alt="${producto.name}">
+                            <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: ${producto.price}</strong></p>
+                    </li>
+                `;
+                listaProductos.innerHTML = htmlProducto;                
+            } else {
+                console.log(datos);
+                console.log(datos.message);
+                alert(datos.message);
+            }
+
+        });
+    </script>
+</body>
+</html>
