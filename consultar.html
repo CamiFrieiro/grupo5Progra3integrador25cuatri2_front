@@ -62,9 +62,9 @@
 
             let idProd = data.idProd; 
             console.log(idProd);
-            console.log(`Realizando una peticion GET a la url ${url}/api/products${idProd}`);
+            console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`);
             
-            let response = await fetch(`${url}/api/products${idProd}`);
+            let response = await fetch(`${url}/api/products/${idProd}`);
 
             let datos = await response.json();
 

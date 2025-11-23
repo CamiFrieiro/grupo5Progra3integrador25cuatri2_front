@@ -63,7 +63,7 @@
             console.log(idProd);
             console.log(`Realizando una peticion GET a la url ${url}/api/products${idProd}`);
             
-            let response = await fetch(`${url}/api/products${idProd}`);
+            let response = await fetch(`${url}/api/products/${idProd}`);
             let datos = await response.json();
 
             let producto = datos.payload[0];
@@ -97,7 +97,7 @@
         async function eliminarProducto(id) {
             console.log(id); 
             try {
-                let response = await fetch(`${url}/api/products${id}`, {
+                let response = await fetch(`${url}/api/products/${id}`, {
                     method: "DELETE"
                 });
                 let result = await response.json();
