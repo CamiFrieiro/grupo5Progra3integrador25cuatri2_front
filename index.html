@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
+    <title>La Ferreteria</title>
+    <link rel="stylesheet" href="css/styles.css">
+
 </head>
-<body>
-    
+<body class="pagina-bienvenida">
+    <header class="header-bienvenida">
+    <h2>La Ferreteria</h2>
+    </header>
+
+    <main class="main-bienvenida">
+
+        <h1>Bienvenidos</h1>
+        <h4>Introduzca su nombre para ingresar</h4>
+
+        <form id="form-bienvenida">
+            <input type="text" id="bienvenida-nombre">
+            <input class="btn-enviar" type="submit" value="Ingresar">
+
+        </form>
+
+    </main>
+
+    <script>
+        let formBienvenida = document.getElementById("form-bienvenida");
+        formBienvenida.addEventListener("submit", event => {
+            event.preventDefault();
+
+            let nombreUsuario = document.getElementById("bienvenida-nombre").value;
+
+            if(nombreUsuario.length > 0){
+                sessionStorage.setItem("nombreUsuario", nombreUsuario);
+                window.location.href = "productos.html"
+            }
+        })
+    </script>
 </body>
 </html>

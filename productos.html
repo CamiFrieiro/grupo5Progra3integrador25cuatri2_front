@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferretería</title>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/main.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img class="logo" src="https://images.vexels.com/media/users/3/218822/isolated/preview/a87578d4357b9edab94fa4677fc42394-icono-de-trazo-de-herramientas-de-construccion.png" alt="logo libro">
+        </div>
+        <h1> La Ferreteria</h1>
+    </header>
+
+<input type="text" id="barraBusqueda" placeholder="Buscar...">
+
+<div class="container">
+
+    <div>
+        <div class="barra-orden">
+            <button id="ordenNombre">Ordenar por Nombre</button>
+            <button id="ordenPrecio">Ordenar por Precio</button>
+        </div>
+
+        <div id="listadoProductos"></div>
+    </div>
+
+    <div class="carrito-container">
+        <h2> 🛒 Carrito 🛒</h2>
+
+        <ul id="productosCarrito"></ul>
+
+        <p>Total a pagar: <span id="totalPagar">$0</span></p>
+
+        <button id="vaciarCarrito">Vaciar Carrito</button>
+        <button id="imprimirTicket">Imprimir Ticket </button>
+    </div>
+
+
+</body>
+</html>
